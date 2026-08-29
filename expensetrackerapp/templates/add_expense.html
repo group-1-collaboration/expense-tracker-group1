@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Add Expense - Expense Tracker</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4faf6;
+            color: #222;
+        }
+
+        nav {
+            background-color: #16803c;
+            padding: 18px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav h1 {
+            color: white;
+            font-size: 22px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        .form-container {
+            width: 500px;
+            max-width: 90%;
+            margin: 50px auto;
+            background-color: white;
+            padding: 35px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #16803c;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+
+        input:focus,
+        select:focus {
+            outline: none;
+            border-color: #16803c;
+        }
+
+        .errorlist {
+            color: #b00020;
+            list-style: none;
+            margin-top: 5px;
+        }
+
+        .button {
+            width: 100%;
+            padding: 13px;
+            background-color: #16803c;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #116b31;
+        }
+
+        .cancel {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            color: #16803c;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+
+        <h1>Expense Tracker</h1>
+
+        <div>
+            <a href="{% url 'expense_list' %}">Expenses</a>
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
+
+    </nav>
+
+    <div class="form-container">
+
+        <h2>Add Expense</h2>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="button">
+                Save Expense
+            </button>
+
+        </form>
+
+        <a href="{% url 'expense_list' %}" class="cancel">
+            Cancel
+        </a>
+
+    </div>
+
+</body>
+</html>

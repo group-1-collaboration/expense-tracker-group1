@@ -28,7 +28,9 @@ def login_view(request):
         )
 
         if user is not None:
+
             login(request, user)
+
             return redirect('expense_list')
 
         return render(request, 'expenses/login.html', {
@@ -36,7 +38,6 @@ def login_view(request):
         })
 
     return render(request, 'expenses/login.html')
-
 
 # LOGOUT
 @login_required

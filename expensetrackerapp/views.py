@@ -84,3 +84,31 @@ def add_expense(request):
     return render(request, 'expenses/add_expense.html', {
         'form': form
     })
+
+# registration
+def register_view(request):
+
+    if request.method == 'POST':
+
+        form = RegisterForm(request.POST)
+
+        if form.is_valid():
+
+            user = form.save(commit=False)
+
+            user.set_password(
+                form.cleaned_data['password']
+            )
+
+            user.save()
+
+            login(request, user)
+
+            return redirect('expense_list')
+
+    else:
+        form = RegisterForm()
+
+    return render(request, 'expenses/register.html', {
+        'form': form
+    })

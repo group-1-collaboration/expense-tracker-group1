@@ -5,6 +5,13 @@ from django.contrib.auth.decorators import login_required
 from .models import Expense
 from .forms import ExpenseForm
 
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
+
+from .models import Expense
+from .forms import ExpenseForm, RegisterForm
+
 # Create your views here.
 # LOGIN
 def login_view(request):

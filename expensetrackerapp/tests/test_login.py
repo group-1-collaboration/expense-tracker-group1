@@ -51,3 +51,19 @@ class LoginTests(TestCase):
         )
 
         self.assertEqual(response.status_code, 200)
+
+    def test_user_can_logout(self):
+
+     self.client.login(
+        username="testuser",
+        password="StrongPassword123!"
+    )
+
+     response = self.client.get(
+        reverse("logout")
+    )
+
+     self.assertRedirects(
+        response,
+        reverse("login")
+    )

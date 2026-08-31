@@ -24,7 +24,7 @@ def login_view(request):
         user = authenticate(
             request,
             username=username,
-            password=password
+            password=password,
         )
 
         if user is not None:
@@ -86,6 +86,28 @@ def add_expense(request):
         'form': form
     })
 
+
+# DELETE EXPENSE
+@login_required
+def delete_expense(request, pk):
+
+    expense = get_object_or_404(
+        Expense,
+        pk=pk,
+        user=request.user
+    )
+
+    if request.method == 'POST':
+
+        expense.delete()
+
+        return redirect('expense_list')
+
+    return render(request, 'expenses/delete_expense.html', {
+        'expense': expense
+    })
+
+
 # registration
 def register_view(request):
 
@@ -93,7 +115,7 @@ def register_view(request):
 
         form = RegisterForm(request.POST)
 
-        if form.is_valid():
+        if form.is_valid(): # only register the user if  their registration info is valid
 
             user = form.save(commit=False)
 

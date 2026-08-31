@@ -1,3 +1,4 @@
+from datetime import date
 from django.test import TestCase
 from django.urls import reverse
 from django.contrib.auth.models import User
@@ -63,7 +64,8 @@ class ExpenseTests(TestCase):
         {
             "amount": 500,
             "category": self.category.id,
-            "description": "Lunch"
+            "description": "Lunch",
+            "date": "2026-08-29"
         }
     )
 
@@ -157,7 +159,8 @@ class ExpenseTests(TestCase):
         user=self.user,
         amount=500,
         category=self.category,
-        description="Lunch"
+        description="Lunch",
+        date=date(2026, 8, 29)
     )
 
     response = self.client.post(
@@ -173,7 +176,8 @@ class ExpenseTests(TestCase):
         user=self.user,
         amount=500,
         category=self.category,
-        description="Lunch"
+        description="Lunch",
+        date=date(2026, 8, 29)
     )
 
     self.client.login(

@@ -24,7 +24,7 @@ def login_view(request):
         user = authenticate(
             request,
             username=username,
-            password=password
+            password=password,
         )
 
         if user is not None:
@@ -115,7 +115,7 @@ def register_view(request):
 
         form = RegisterForm(request.POST)
 
-        if form.is_valid():
+        if form.is_valid(): # only register the user if  their registration info is valid
 
             user = form.save(commit=False)
 
